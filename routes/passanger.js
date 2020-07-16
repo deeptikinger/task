@@ -1,29 +1,29 @@
-const Passangar=require('../db').Passangar
+const Passanger=require('../db').Passanger
 const route=require('express').Router()
 
 route.get('/',(req,res)=>{
-    Passangar.findAll()
+    Passanger.findAll()
     .then((psg)=>{
         res.status(200).send(psg)
     })
     .catch((err)=>{
         res.status(500).send({
-        error:"ERROR"    
+        error:err   
         })
     })
 })
 
 route.post('/',(req,res)=>{
-    console.log(req.body)
-    Passangar.create({
+    Passanger.create({
         name:req.body.name,
         email:req.body.email,
-        quantity:parseInt(req.body.quantity)
+        phone:parseInt(req.body.phone)
     }).then((psg)=>{
+       
             res.status(200).send(psg)
         }).catch((err)=>{
             res.status(500).send({
-                error:"Error"
+                error:err
             })
         })
     })  

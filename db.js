@@ -7,7 +7,7 @@ const db=new Sequelize('api','apiuser','apipass',{
         max:5
     }
 })
- const Passangar=db.define('passangars',{
+ const Passanger=db.define('passanger',{
      id:{
          type:Sequelize.INTEGER,
          autoIncrement:true,
@@ -21,16 +21,40 @@ const db=new Sequelize('api','apiuser','apipass',{
         type:Sequelize.STRING,
         allowNull:false
      },
-     quantity:{
-         type:Sequelize.INTEGER,
-         defaultValue:0,
-         allowNull:false
+     phone:{
+        type:Sequelize.BIGINT,
+        allowNull:false
      }
  })
+const Summary=db.define('summary',{
+    from:{
+       type:Sequelize.STRING,
+       allowNull:false
+    },
+    to:{
+      type:Sequelize.STRING,
+      allowNull:false
+    },
+    Date:{
+      type:Sequelize.DATE,
+      allowNull:false,
+      defaultValue: Sequelize.NOW,
+     
+    },
+     adults:{
+         type:Sequelize.INTEGER,
+         allowNull:false
+     },
+     TotalCost:{
+         type:Sequelize.DOUBLE,
+         defaultValue:0,
+     }
+})
+
  db.sync()
  .then(()=>{console.log("Database has created")
  }).catch((err)=>{console.log(err)})
  
  exports=module.exports={
-    Passangar
+    Passanger,Summary
  }
